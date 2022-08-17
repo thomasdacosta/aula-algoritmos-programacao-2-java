@@ -1,6 +1,6 @@
 package edu.senac.aula02;
 
-public class Pessoa {
+public class Pessoa implements Humano {
 	
 	private String nome;
 	private int idade;
@@ -47,6 +47,10 @@ public class Pessoa {
 		passos++;
 		return passos;
 	}
+	
+	public void falar(String frase) {
+		System.out.println(frase);
+	}	
 	
 	@Override
 	public String toString() {
