@@ -13,9 +13,12 @@ import java.util.UUID;
 
 public class Ordernacao {
 
-	private static final Integer TAMANHO_VETOR = 15;
+	public static final Integer TAMANHO_VETOR = 10;
+	private static final Boolean IMPRIME_VETOR = false;
 
 	private Integer valores[] = new Integer[TAMANHO_VETOR];
+	private OrdenacaoListener listener = null;
+	private Duration tempoOrdenacao = null;
 
 	public Ordernacao() {
 	}
@@ -25,15 +28,18 @@ public class Ordernacao {
 		for (int i = 0; i <= TAMANHO_VETOR - 1; i++)
 			valores[i] = random.nextInt(1, TAMANHO_VETOR);
 	}
-
+	
 	public void imprimirVetor() {
-		for (int i = 0; i <= TAMANHO_VETOR - 1; i++) {
+		if (!IMPRIME_VETOR)
+			return;
+
+		for (int i = 0; i <= TAMANHO_VETOR - 1; i++)
 			System.out.print(valores[i] + " ");
-		}
-		System.out.println("");
+
+		System.out.println();
 		
 		try {
-			Thread.sleep(200);
+			Thread.sleep(100);
 		} catch (InterruptedException e) {}
 	}
 
@@ -54,12 +60,16 @@ public class Ordernacao {
 					valores[i + 1] = valores[i];
 					valores[i] = aux;
 				}
+				
 				imprimirVetor();
+				if (listener != null)
+					listener.onExecution(valores);
 			}
 		}
 
 		Instant end = Instant.now();
-		System.out.println("##### Dura��o da ordena��o - BubbleSort: " + Duration.between(start, end));
+		tempoOrdenacao = Duration.between(start, end);
+		System.out.println("##### Duração da ordenação - BubbleSort: " + tempoOrdenacao);
 	}
 
 	public void insertionSort() {
@@ -73,9 +83,37 @@ public class Ordernacao {
 			}
 			valores[j] = x;
 			imprimirVetor();
+			if (listener != null)
+				listener.onExecution(valores);			
 		}
 		Instant end = Instant.now();
-		System.out.println("##### Dura��o da ordena��o - InsertionSort: " + Duration.between(start, end));
+		tempoOrdenacao = Duration.between(start, end);
+		System.out.println("##### Duração da ordenação - InsertionSort: " + tempoOrdenacao);
+	}
+	
+	public void selectionSort() {
+		Instant start = Instant.now();
+		
+		int posMenorValor = 0;
+		
+		for (int i=0;i<=valores.length-1;i++) {
+			posMenorValor = i;
+			for (int j=0;j<=valores.length-1;j++) {
+				if (valores[posMenorValor] <= valores[j]) {
+					posMenorValor = j;
+					int aux = valores[i];
+					valores[i] = valores[posMenorValor];
+					valores[j] = aux;
+					imprimirVetor();
+					if (listener != null)
+						listener.onExecution(valores);					
+				}
+			}
+		}		
+		
+		Instant end = Instant.now();
+		tempoOrdenacao = Duration.between(start, end);
+		System.out.println("##### Duração da ordenação - SelectionSort: " + tempoOrdenacao);		
 	}
 
 	public void gerarArquivo(String prefix) throws IOException {
@@ -87,18 +125,33 @@ public class Ordernacao {
 					StandardOpenOption.APPEND);
 		System.out.println(BubbleSort.class + " - Arquivo gerado com sucesso - " + prefix);
 	}
+	
+	public Integer[] getValores() {
+		return valores;
+	}
+	
+	public void setListener(OrdenacaoListener listener) {
+		this.listener = listener;
+	}
 
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 
 		Ordernacao ordernacao = new Ordernacao();
 		ordernacao.gerarValoresVetor();
+		
+		System.out.println("##### Duração da ordenação - BubbleSort"); 
 		ordernacao.bubbleSort();
 
 		ordernacao.gerarValoresVetor();
+		System.out.println("##### Duração da ordenação - InsertionSort");
 		ordernacao.insertionSort();
+		
+		ordernacao.gerarValoresVetor();
+		System.out.println("##### Duração da ordenação - SelectionSort");
+		ordernacao.selectionSort();
 
 		scanner.close();
 	}
-
+	
 }
