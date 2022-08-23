@@ -20,8 +20,8 @@ public class OrdenacaoFrame extends JFrame {
 
 	private JPanel contentPane;
 
-	private Ordernacao ordernacao = new Ordernacao();
-	private OperacoesComponentes componentes = new OperacoesComponentes();
+	private JPanel jPanels[] = new JPanel[Ordernacao.TAMANHO_VETOR];
+	private JLabel jLabels[] = new JLabel[Ordernacao.TAMANHO_VETOR];
 
 	private JRadioButton rdbtnBubbleSort;
 	private JRadioButton rdbtnSelectionSort;
@@ -31,6 +31,8 @@ public class OrdenacaoFrame extends JFrame {
 	private JButton btnOrdenar;
 
 	private JLabel lblStatus;
+	
+	private Ordernacao ordernacao = new Ordernacao();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,8 +40,8 @@ public class OrdenacaoFrame extends JFrame {
 				try {
 					OrdenacaoFrame frame = new OrdenacaoFrame();
 					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
 			}
 		});
@@ -52,18 +54,52 @@ public class OrdenacaoFrame extends JFrame {
 		criarBotaoGerarValores();
 
 		ordernacao.gerarValoresVetor();
-		componentes.mostrarOrdenacao(ordernacao.getValores());
+		mostrarOrdenacao(ordernacao.getValores());
+	}
+	
+	private void removerComponentes() {
+		for (JPanel jPanel : jPanels)
+			if (jPanel != null)
+				contentPane.remove(jPanel);
+		
+		for (JLabel jLabel : jLabels)
+			if (jLabel != null)
+				contentPane.remove(jLabel);				
+	}
+	
+	private void mostrarOrdenacao(Integer valores[]) {
+		int posicaoInicial = 55;
+		int posicaoIncremento = 36;
+		
+		for (int i=0;i<=valores.length-1;i++) {
+			JPanel panel = new JPanel();
+			panel.setBackground(Color.BLUE);
+			panel.setBounds(posicaoInicial, 
+					127 - (valores[i] * 10), 
+					26, 
+					(56 + (valores[i] * 10)));
+			contentPane.add(panel);
+			jPanels[i] = panel;
+			
+			JLabel label = new JLabel(valores[i] + "");
+			label.setBounds(posicaoInicial, 190, 26, 14);
+			contentPane.add(label);
+			jLabels[i] = label;
+			
+			posicaoInicial += posicaoIncremento;
+		}
 	}
 	
 	private void criarComponentePrincipal() {
 		setTitle("Algortimos de Ordena\u00E7\u00E3o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 583, 312);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		componentes.setContentPane(contentPane);
+		
+		setContentPane(contentPane);
 	}
 	
 	private void criarBotaoOrdenar() {
@@ -71,8 +107,10 @@ public class OrdenacaoFrame extends JFrame {
 		btnOrdenar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblStatus.setText("Ordernando. Aguarde...");
+				
 				btnOrdenar.setEnabled(false);
 				btnGerarValores.setEnabled(false);
+				
 				rdbtnBubbleSort.setEnabled(false);
 				rdbtnInsertionSort.setEnabled(false);
 				rdbtnSelectionSort.setEnabled(false);
@@ -84,16 +122,19 @@ public class OrdenacaoFrame extends JFrame {
 
 							@Override
 							public void onExecution(Integer[] valores) {
-								componentes.removerComponentes();
-								componentes.mostrarOrdenacao(ordernacao.getValores());
+								removerComponentes();
+								mostrarOrdenacao(ordernacao.getValores());
+								
 								contentPane.revalidate();
 								contentPane.repaint();
+								
 								try {
 									Thread.sleep(250);
-								} catch (InterruptedException e) {
-									e.printStackTrace();
+								} catch (InterruptedException ex) {
+									ex.printStackTrace();
 								}
 							}
+							
 						});
 
 						if (rdbtnBubbleSort.isSelected())
@@ -107,9 +148,11 @@ public class OrdenacaoFrame extends JFrame {
 						
 						btnOrdenar.setEnabled(true);
 						btnGerarValores.setEnabled(true);
+						
 						rdbtnBubbleSort.setEnabled(true);
 						rdbtnInsertionSort.setEnabled(true);
 						rdbtnSelectionSort.setEnabled(true);
+						
 						lblStatus.setText("Ordenação concluída com sucesso.");
 					}
 				});
@@ -126,9 +169,10 @@ public class OrdenacaoFrame extends JFrame {
 		btnGerarValores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lblStatus.setText("");
-				componentes.removerComponentes();
+				removerComponentes();
 				ordernacao.gerarValoresVetor();
-				componentes.mostrarOrdenacao(ordernacao.getValores());
+				mostrarOrdenacao(ordernacao.getValores());
+
 				contentPane.revalidate();
 				contentPane.repaint();
 			}
@@ -142,8 +186,8 @@ public class OrdenacaoFrame extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBounds(430, 11, 122, 192);
-		contentPane.add(panel);
 		panel.setLayout(null);
+		contentPane.add(panel);
 
 		rdbtnBubbleSort = new JRadioButton("Bubble Sort");
 		rdbtnBubbleSort.setSelected(true);
@@ -167,4 +211,5 @@ public class OrdenacaoFrame extends JFrame {
 		lblStatus.setBounds(10, 243, 313, 14);
 		contentPane.add(lblStatus);
 	}
+	
 }

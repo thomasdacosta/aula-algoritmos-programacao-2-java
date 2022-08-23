@@ -14,11 +14,13 @@ import java.util.UUID;
 public class Ordernacao {
 
 	public static final Integer TAMANHO_VETOR = 10;
-	private static final Boolean IMPRIME_VETOR = false;
+	
+	private boolean logOperacoes = false;
 
 	private Integer valores[] = new Integer[TAMANHO_VETOR];
-	private OrdenacaoListener listener = null;
 	private Duration tempoOrdenacao = null;
+	
+	private OrdenacaoListener listener = null;
 
 	public Ordernacao() {
 	}
@@ -29,8 +31,8 @@ public class Ordernacao {
 			valores[i] = random.nextInt(1, TAMANHO_VETOR);
 	}
 	
-	public void imprimirVetor() {
-		if (!IMPRIME_VETOR)
+	public void logOperacoes() {
+		if (!logOperacoes)
 			return;
 
 		for (int i = 0; i <= TAMANHO_VETOR - 1; i++)
@@ -61,7 +63,7 @@ public class Ordernacao {
 					valores[i] = aux;
 				}
 				
-				imprimirVetor();
+				logOperacoes();
 				if (listener != null)
 					listener.onExecution(valores);
 			}
@@ -82,7 +84,7 @@ public class Ordernacao {
 				j--;
 			}
 			valores[j] = x;
-			imprimirVetor();
+			logOperacoes();
 			if (listener != null)
 				listener.onExecution(valores);			
 		}
@@ -104,7 +106,7 @@ public class Ordernacao {
 					int aux = valores[i];
 					valores[i] = valores[posMenorValor];
 					valores[j] = aux;
-					imprimirVetor();
+					logOperacoes();
 					if (listener != null)
 						listener.onExecution(valores);					
 				}
@@ -132,6 +134,14 @@ public class Ordernacao {
 	
 	public void setListener(OrdenacaoListener listener) {
 		this.listener = listener;
+	}
+
+	public boolean isLogOperacoes() {
+		return logOperacoes;
+	}
+
+	public void setLogOperacoes(boolean logOperacoes) {
+		this.logOperacoes = logOperacoes;
 	}
 
 	public static void main(String[] args) throws IOException {
