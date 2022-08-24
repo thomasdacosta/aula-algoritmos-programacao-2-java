@@ -1,4 +1,4 @@
-package edu.senac.aula03.poo;
+package edu.senac.aula03;
 
 import java.io.BufferedReader;
 import java.io.IOException;

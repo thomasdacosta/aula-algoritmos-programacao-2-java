@@ -1,4 +1,4 @@
-package edu.senac.ordenacao;
+package edu.senac.aula04;
 
 import java.awt.Color;
 import java.awt.EventQueue;

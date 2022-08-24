@@ -1,4 +1,4 @@
-package edu.senac.ordenacao;
+package edu.senac.aula04;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,12 +10,12 @@ import java.time.Instant;
 import java.util.Random;
 import java.util.UUID;
 
-public class BubbleSort {
+public class InsertionSort {
 	
 	private static final Integer TAMANHO_VETOR = 10000;
 	
 	public static void main(String[] args) throws IOException {
-		System.out.println(BubbleSort.class +  " - Ordenando aguarde..."); 
+		System.out.println(InsertionSort.class +  " - Ordenando aguarde..."); 
 		Integer valores[] = new Integer[TAMANHO_VETOR];
 		
 		Random random = new Random();
@@ -27,37 +27,30 @@ public class BubbleSort {
 
 		Instant start = Instant.now();
 		
-		boolean existeTroca = false;
-		while (!existeTroca) {
-			Integer aux = 0;
-			existeTroca = true;
-			for (int i=0;i<=valores.length-1;i++) {
-				if (i == valores.length-1)
-					break;
-				
-				if (valores[i+1] < valores[i]) {
-					existeTroca = false;
-					aux = valores[i+1];
-					valores[i+1] = valores[i];
-					valores[i] = aux;
-				}
+		for (int i = 0; i < valores.length; i++) {
+			int j = i;
+			int x = valores[j];
+			while (j > 0 && x < valores[j - 1]) {
+				valores[j] = valores[j - 1];
+				j--;
 			}
+			valores[j] = x;
 		}
 		
 		Instant end = Instant.now();
-		System.out.println(BubbleSort.class + " - ##### Duração da ordenação: " + Duration.between(start, end));
+		System.out.println(InsertionSort.class + " - ##### Duração da ordenação: " + Duration.between(start, end));
 		
 		gerarArquivo(valores, "saida");
 	}
 	
 	private static void gerarArquivo(Integer valores[], String suffix) throws IOException {
-		System.out.println(BubbleSort.class + " - Gravando em um arquivo" );
-		Path bubbleSortDiretorio = Files.createDirectory(Path.of("./bubbleSortDiretorio-" + suffix + "-" + UUID.randomUUID()));
-		Path bubbleSortArquivo = Files.createFile(bubbleSortDiretorio.resolve("bubbleSort-" + suffix + ".txt"));
+		System.out.println(InsertionSort.class + " - Gravando em um arquivo" );
+		Path bubbleSortDiretorio = Files.createDirectory(Path.of("./insertionSortDiretorio-" + suffix + "-" + UUID.randomUUID()));
+		Path bubbleSortArquivo = Files.createFile(bubbleSortDiretorio.resolve("insertionSort-" + suffix + ".txt"));
 		for (Integer valor : valores)
 			Files.writeString(bubbleSortArquivo, valor + "\r\n", 
 					StandardCharsets.ISO_8859_1, StandardOpenOption.APPEND);
-		System.out.println(BubbleSort.class + " - Arquivo gerado com sucesso" );
-	}
+		System.out.println(InsertionSort.class + " - Arquivo gerado com sucesso" );
+	}	
 
 }

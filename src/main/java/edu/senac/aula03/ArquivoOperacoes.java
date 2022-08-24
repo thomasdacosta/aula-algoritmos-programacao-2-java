@@ -1,4 +1,4 @@
-package edu.senac.aula03.poo;
+package edu.senac.aula03;
 
 import java.io.IOException;
 import java.util.UUID;
