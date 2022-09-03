@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=java,maven,eclipse,intellij,visualstudiocode
 
 .DS_Store
+nb-configuration.xml
 
 ### Eclipse ###
 obj/**
