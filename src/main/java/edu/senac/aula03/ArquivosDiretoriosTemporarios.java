@@ -3,6 +3,9 @@ package edu.senac.aula03;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Classe corrigida para o Java 8
+ */
 public class ArquivosDiretoriosTemporarios {
 	
 	public static void main(String[] args) throws Exception {

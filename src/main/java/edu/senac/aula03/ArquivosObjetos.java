@@ -6,6 +6,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * Classe corrigida para o Java 8
+ */
 public class ArquivosObjetos {
 	
 	public void criarObjeto(Object object) throws Exception {

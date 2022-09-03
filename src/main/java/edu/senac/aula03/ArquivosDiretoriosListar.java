@@ -3,17 +3,27 @@ package edu.senac.aula03;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.stream.Stream;
 
+/**
+ * Classe corrigida para o Java 8
+ */
 public class ArquivosDiretoriosListar {
 	
 	public static void main(String[] args) throws Exception {
-		Path diretorioAtual = Path.of(".");
+		Path diretorioAtual = Paths.get(".");
 				
 		System.out.println("## Listando todos os arquivos do diretório");
 		try (Stream<Path> arquivos = Files.list(diretorioAtual)) {
-		    for (Path arquivo : arquivos.toList())
-		    	System.out.println(arquivo.normalize().toAbsolutePath());
+//		    for (Path arquivo : arquivos.toList())
+			Iterator<Path> iterator = arquivos.iterator();
+			while (iterator.hasNext()) {
+				Path arquivo = iterator.next();
+				System.out.println(arquivo.normalize().toAbsolutePath());
+			}
+		    	
 		}
 
 		System.out.println("## Buscando um arquivo");

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.Duration;
 import java.time.Instant;
@@ -28,7 +29,7 @@ public class Ordernacao {
 	public void gerarValoresVetor() {
 		Random random = new Random();
 		for (int i = 0; i <= TAMANHO_VETOR - 1; i++)
-			valores[i] = random.nextInt(1, TAMANHO_VETOR);
+			valores[i] = random.ints(1, TAMANHO_VETOR).findAny().getAsInt();
 	}
 	
 	public void logOperacoes() {
@@ -120,11 +121,10 @@ public class Ordernacao {
 
 	public void gerarArquivo(String prefix) throws IOException {
 		System.out.println("Gravando em um arquivo - " + prefix);
-		Path bubbleSortDiretorio = Files.createDirectory(Path.of("./" + prefix + "Diretorio" + UUID.randomUUID()));
+		Path bubbleSortDiretorio = Files.createDirectory(Paths.get("./" + prefix + "Diretorio" + UUID.randomUUID()));
 		Path bubbleSortArquivo = Files.createFile(bubbleSortDiretorio.resolve(prefix + ".txt"));
 		for (Integer valor : this.valores)
-			Files.writeString(bubbleSortArquivo, valor + "\r\n", StandardCharsets.ISO_8859_1,
-					StandardOpenOption.APPEND);
+			Files.write(bubbleSortArquivo, (valor + "\r\n").getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
 		System.out.println(BubbleSort.class + " - Arquivo gerado com sucesso - " + prefix);
 	}
 	

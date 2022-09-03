@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import edu.senac.aula02.Humano;
 
+/**
+ * Classe corrigida para o Java 8
+ */
 public class Pessoa implements Humano, Serializable {
 	
 	private static final long serialVersionUID = -911770391334640100L;

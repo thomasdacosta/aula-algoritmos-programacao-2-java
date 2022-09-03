@@ -3,6 +3,9 @@ package edu.senac.aula03;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * Classe corrigida para o Java 8
+ */
 public class ArquivoOperacoes {
 	
 	public static void main(String[] args) {

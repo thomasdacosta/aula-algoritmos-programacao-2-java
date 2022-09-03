@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.time.Duration;
 import java.time.Instant;
@@ -21,7 +22,7 @@ public class SelectionSort {
 		Random random = new Random();
 		
 		for (int i=0;i<=TAMANHO_VETOR-1;i++)
-			valores[i] = random.nextInt(1, TAMANHO_VETOR);
+			valores[i] = random.ints(1, TAMANHO_VETOR).findAny().getAsInt();
 		
 		gerarArquivo(valores, "entrada");
 
@@ -53,11 +54,10 @@ public class SelectionSort {
 	
 	private static void gerarArquivo(Integer valores[], String suffix) throws IOException {
 		System.out.println(SelectionSort.class + " - Gravando em um arquivo" );
-		Path bubbleSortDiretorio = Files.createDirectory(Path.of("./selectionSortDiretorio-" + suffix + "-" + UUID.randomUUID()));
+		Path bubbleSortDiretorio = Files.createDirectory(Paths.get("./selectionSortDiretorio-" + suffix + "-" + UUID.randomUUID()));
 		Path bubbleSortArquivo = Files.createFile(bubbleSortDiretorio.resolve("selectionSortSort-" + suffix + ".txt"));
 		for (Integer valor : valores)
-			Files.writeString(bubbleSortArquivo, valor + "\r\n", 
-					StandardCharsets.ISO_8859_1, StandardOpenOption.APPEND);
+			Files.write(bubbleSortArquivo, (valor + "\r\n").getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
 		System.out.println(SelectionSort.class + " - Arquivo gerado com sucesso" );
 	}	
 

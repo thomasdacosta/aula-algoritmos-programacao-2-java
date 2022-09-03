@@ -6,6 +6,8 @@
 **Aula 04** – Operações com Vetores e Matrizes<br/>
 **Aula 05** – Recursividade<br/>
 **Aula 06** – Algoritmos de Ordenação: BubbleSort, InsertionSort e SelectionSort<br/>
+**Aula 07** – Algoritmos de Ordenação: MergeSort e QuickSort<br/>
+**Aula 08** – Pilha e Fila<br/>
 
 ---
 
