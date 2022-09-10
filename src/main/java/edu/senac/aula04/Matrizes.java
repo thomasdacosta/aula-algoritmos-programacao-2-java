@@ -4,10 +4,10 @@ public class Matrizes {
 
 	public static void main(String[] args) {
 		int valor[][] = {
-							{0, 0 ,0 ,0},
+							{9, 0 ,0 ,9},
 							{0, 1 ,1 ,0},
 							{0, 1 ,1 ,0},
-							{0, 0 ,0 ,0} 
+							{9, 0 ,0 ,9} 
 		 		  		};
 		
 		for (int i=0;i<=valor.length-1;i++) {
