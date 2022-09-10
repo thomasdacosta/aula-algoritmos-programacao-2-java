@@ -1,14 +1,15 @@
-# Senac - Algoritmos e Programção II
+# Senac - Algoritmos e ProgramÃ§Ã£o II
 
-**Aula 01** – Apresentação<br/>
-**Aula 02** – Programação Orientada a Objetos<br/>
-**Aula 03** – Trabalhando com Arquivos<br/>
-**Aula 04** – Operações com Vetores e Matrizes<br/>
-**Aula 05** – Recursividade<br/>
-**Aula 06** – Algoritmos de Ordenação: BubbleSort, InsertionSort e SelectionSort<br/>
-**Aula 07** – Algoritmos de Ordenação: MergeSort e QuickSort<br/>
-**Aula 08** – Pilha e Fila<br/>
+**Aula 01** â€“ ApresentaÃ§Ã£o<br/>
+**Aula 02** â€“ ProgramaÃ§Ã£o Orientada a Objetos<br/>
+**Aula 03** â€“ Trabalhando com Arquivos<br/>
+**Aula 04** â€“ Vetores e Matrizes<br/>
+**Aula 05** â€“ Recursividade<br/>
+**Aula 06** â€“ Algoritmos de OrdenaÃ§Ã£o: BubbleSort, InsertionSort e SelectionSort<br/>
+**Aula 07** â€“ Algoritmos de OrdenaÃ§Ã£o: MergeSort e QuickSort<br/>
+**Aula 08** â€“ Busca Linear e binÃ¡ria<br/>
+**Aula 09** â€“ Pilha e Fila<br/>
 
 ---
 
-Thomás da Costa - [https://thomasdacosta.com.br](https://thomasdacosta.com.br)
+ThomÃ¡s da Costa - [https://thomasdacosta.com.br](https://thomasdacosta.com.br)
