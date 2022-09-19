@@ -48,25 +48,19 @@ public class Ordernacao {
 
 	public void bubbleSort() {
 		Instant start = Instant.now();
-
-		boolean existeTroca = false;
-		while (!existeTroca) {
-			Integer aux = 0;
-			existeTroca = true;
-			for (int i = 0; i <= valores.length - 1; i++) {
-				if (i == valores.length - 1)
-					break;
-
-				if (valores[i + 1] < valores[i]) {
-					existeTroca = false;
-					aux = valores[i + 1];
-					valores[i + 1] = valores[i];
-					valores[i] = aux;
+		
+		int aux = 0;
+		for (int i = 0; i < valores.length - 1; i++) {
+			for (int j = 0; j < valores.length - i - 1; j++) {
+				if (valores[j] > valores[j + 1]) {
+					aux = valores[j];
+					valores[j] = valores[j + 1];
+					valores[j + 1] = aux;
 				}
 				
 				logOperacoes();
 				if (listener != null)
-					listener.onExecution(valores);
+					listener.onExecution(valores);				
 			}
 		}
 

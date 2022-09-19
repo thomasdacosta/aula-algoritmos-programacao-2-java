@@ -13,7 +13,7 @@ import java.util.UUID;
 
 public class SelectionSort {
 	
-	private static final Integer TAMANHO_VETOR = 1000;
+	private static final Integer TAMANHO_VETOR = 10000;
 	
 	public static void main(String[] args) throws IOException {
 		System.out.println(SelectionSort.class +  " - Ordenando aguarde..."); 
