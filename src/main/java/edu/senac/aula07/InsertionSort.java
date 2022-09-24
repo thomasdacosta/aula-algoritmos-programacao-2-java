@@ -1,4 +1,4 @@
-package edu.senac.aula06;
+package edu.senac.aula07;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

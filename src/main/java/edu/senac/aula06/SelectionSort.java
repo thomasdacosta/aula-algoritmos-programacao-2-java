@@ -11,6 +11,8 @@ import java.time.Instant;
 import java.util.Random;
 import java.util.UUID;
 
+import edu.senac.aula07.InsertionSort;
+
 public class SelectionSort {
 	
 	private static final Integer TAMANHO_VETOR = 10000;
