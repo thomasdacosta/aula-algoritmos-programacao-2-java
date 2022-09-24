@@ -1,4 +1,4 @@
-package edu.senac.aula06;
+package edu.senac.aula08;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,8 +10,6 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Random;
 import java.util.UUID;
-
-import edu.senac.aula07.InsertionSort;
 
 public class SelectionSort {
 	
@@ -49,7 +47,7 @@ public class SelectionSort {
 			System.out.println(valores[i] + " ");
 		
 		Instant end = Instant.now();
-		System.out.println(InsertionSort.class + " - ##### Duração da ordenação: " + Duration.between(start, end));
+		System.out.println(SelectionSort.class + " - ##### Duração da ordenação: " + Duration.between(start, end));
 		
 		gerarArquivo(valores, "saida");
 	}
