@@ -28,17 +28,26 @@ public class SelectionSort {
 
 		Instant start = Instant.now();
 		
-		int posMenorValor = 0;
-		
+		int posAtual = 0;
+		int posMinimoValor = 0;
+		boolean troca = false;
 		for (int i=0;i<=valores.length-1;i++) {
-			posMenorValor = i;
-			for (int j=0;j<=valores.length-1;j++) {
-				if (valores[posMenorValor] <= valores[j]) {
-					posMenorValor = j;
-					int aux = valores[i];
-					valores[i] = valores[posMenorValor];
-					valores[j] = aux;
+			posAtual = i;
+			posMinimoValor = i;
+			troca = false;
+			for (int j=i;j<=valores.length-1;j++) {
+				if (valores[posMinimoValor] > valores[j]) {
+					posMinimoValor = j;
+					troca = true;
 				}
+			}
+			
+			if (troca) {
+				int valorAtual = valores[posAtual];
+				int valorMinimoValor = valores[posMinimoValor];
+				
+				valores[posAtual] = valorMinimoValor;
+				valores[posMinimoValor] = valorAtual;
 			}
 		}
 		
