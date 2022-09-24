@@ -14,41 +14,41 @@ import java.util.UUID;
 
 public class Ordernacao {
 
-	public static final Integer TAMANHO_VETOR = 10;
-	
 	private boolean logOperacoes = false;
 
-	private Integer valores[] = new Integer[TAMANHO_VETOR];
+	private Integer valores[] = null;
 	private Duration tempoOrdenacao = null;
-	
+
 	private OrdenacaoListener listener = null;
 
 	public Ordernacao() {
 	}
 
-	public void gerarValoresVetor() {
+	public void gerarValoresVetor(int tamanhoVetor) {
+		valores = new Integer[tamanhoVetor];
 		Random random = new Random();
-		for (int i = 0; i <= TAMANHO_VETOR - 1; i++)
-			valores[i] = random.ints(1, TAMANHO_VETOR).findAny().getAsInt();
+		for (int i = 0; i <= tamanhoVetor - 1; i++)
+			valores[i] = random.ints(1, tamanhoVetor).findAny().getAsInt();
 	}
-	
+
 	public void logOperacoes() {
 		if (!logOperacoes)
 			return;
 
-		for (int i = 0; i <= TAMANHO_VETOR - 1; i++)
+		for (int i = 0; i <= valores.length - 1; i++)
 			System.out.print(valores[i] + " ");
 
 		System.out.println();
-		
+
 		try {
 			Thread.sleep(100);
-		} catch (InterruptedException e) {}
+		} catch (InterruptedException e) {
+		}
 	}
 
 	public void bubbleSort() {
 		Instant start = Instant.now();
-		
+
 		int aux = 0;
 		for (int i = 0; i < valores.length - 1; i++) {
 			for (int j = 0; j < valores.length - i - 1; j++) {
@@ -57,10 +57,10 @@ public class Ordernacao {
 					valores[j] = valores[j + 1];
 					valores[j + 1] = aux;
 				}
-				
+
 				logOperacoes();
 				if (listener != null)
-					listener.onExecution(valores);				
+					listener.onExecution(valores);
 			}
 		}
 
@@ -81,21 +81,21 @@ public class Ordernacao {
 			valores[j] = x;
 			logOperacoes();
 			if (listener != null)
-				listener.onExecution(valores);			
+				listener.onExecution(valores);
 		}
 		Instant end = Instant.now();
 		tempoOrdenacao = Duration.between(start, end);
 		System.out.println("##### Duração da ordenação - InsertionSort: " + tempoOrdenacao);
 	}
-	
+
 	public void selectionSort() {
 		Instant start = Instant.now();
-		
+
 		int posMenorValor = 0;
-		
-		for (int i=0;i<=valores.length-1;i++) {
+
+		for (int i = 0; i <= valores.length - 1; i++) {
 			posMenorValor = i;
-			for (int j=0;j<=valores.length-1;j++) {
+			for (int j = 0; j <= valores.length - 1; j++) {
 				if (valores[posMenorValor] <= valores[j]) {
 					posMenorValor = j;
 					int aux = valores[i];
@@ -103,14 +103,14 @@ public class Ordernacao {
 					valores[j] = aux;
 					logOperacoes();
 					if (listener != null)
-						listener.onExecution(valores);					
+						listener.onExecution(valores);
 				}
 			}
-		}		
-		
+		}
+
 		Instant end = Instant.now();
 		tempoOrdenacao = Duration.between(start, end);
-		System.out.println("##### Duração da ordenação - SelectionSort: " + tempoOrdenacao);		
+		System.out.println("##### Duração da ordenação - SelectionSort: " + tempoOrdenacao);
 	}
 
 	public void gerarArquivo(String prefix) throws IOException {
@@ -118,14 +118,15 @@ public class Ordernacao {
 		Path bubbleSortDiretorio = Files.createDirectory(Paths.get("./" + prefix + "Diretorio" + UUID.randomUUID()));
 		Path bubbleSortArquivo = Files.createFile(bubbleSortDiretorio.resolve(prefix + ".txt"));
 		for (Integer valor : this.valores)
-			Files.write(bubbleSortArquivo, (valor + "\r\n").getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+			Files.write(bubbleSortArquivo, (valor + "\r\n").getBytes(StandardCharsets.ISO_8859_1),
+					StandardOpenOption.APPEND);
 		System.out.println(BubbleSort.class + " - Arquivo gerado com sucesso - " + prefix);
 	}
-	
+
 	public Integer[] getValores() {
 		return valores;
 	}
-	
+
 	public void setListener(OrdenacaoListener listener) {
 		this.listener = listener;
 	}
@@ -142,20 +143,17 @@ public class Ordernacao {
 		Scanner scanner = new Scanner(System.in);
 
 		Ordernacao ordernacao = new Ordernacao();
-		ordernacao.gerarValoresVetor();
-		
-		System.out.println("##### Duração da ordenação - BubbleSort"); 
+
+		ordernacao.gerarValoresVetor(10000);
 		ordernacao.bubbleSort();
 
-		ordernacao.gerarValoresVetor();
-		System.out.println("##### Duração da ordenação - InsertionSort");
+		ordernacao.gerarValoresVetor(10000);
 		ordernacao.insertionSort();
-		
-		ordernacao.gerarValoresVetor();
-		System.out.println("##### Duração da ordenação - SelectionSort");
+
+		ordernacao.gerarValoresVetor(10000);
 		ordernacao.selectionSort();
 
 		scanner.close();
 	}
-	
+
 }

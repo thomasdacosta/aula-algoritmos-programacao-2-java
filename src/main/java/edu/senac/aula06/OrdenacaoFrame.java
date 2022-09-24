@@ -8,20 +8,22 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.JLabel;
 
 public class OrdenacaoFrame extends JFrame {
+	
+	private static final Integer TAMANHO_VETOR = 10;
 
 	private static final long serialVersionUID = -3234138620479184569L;
 
 	private JPanel contentPane;
 
-	private JPanel jPanels[] = new JPanel[Ordernacao.TAMANHO_VETOR];
-	private JLabel jLabels[] = new JLabel[Ordernacao.TAMANHO_VETOR];
+	private JPanel jPanels[] = new JPanel[TAMANHO_VETOR];
+	private JLabel jLabels[] = new JLabel[TAMANHO_VETOR];
 
 	private JRadioButton rdbtnBubbleSort;
 	private JRadioButton rdbtnSelectionSort;
@@ -53,7 +55,7 @@ public class OrdenacaoFrame extends JFrame {
 		criarBotaoOrdenar();
 		criarBotaoGerarValores();
 
-		ordernacao.gerarValoresVetor();
+		ordernacao.gerarValoresVetor(TAMANHO_VETOR);
 		mostrarOrdenacao(ordernacao.getValores());
 	}
 	
@@ -170,7 +172,7 @@ public class OrdenacaoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblStatus.setText("");
 				removerComponentes();
-				ordernacao.gerarValoresVetor();
+				ordernacao.gerarValoresVetor(TAMANHO_VETOR);
 				mostrarOrdenacao(ordernacao.getValores());
 
 				contentPane.revalidate();
