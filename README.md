@@ -8,7 +8,10 @@
 **Aula 06** – Algoritmos de Ordenação: Bubble Sort<br/>
 **Aula 07** – Algoritmos de Ordenação: Insertion Sort<br/>
 **Aula 08** – Algoritmos de Ordenação: Selection Sort<br/>
-**Aula 09** – Busca Linear e binária<br/>
+**Aula 09** – Busca Linear e Binária<br/>
+**Aula 10** – Algoritmos de Ordenação: MergeSort<br/>
+**Aula 11** – Algoritmos de Ordenação: QuickSort<br/>
+**Aula 12** – Pilha e Fila
 
 ---
 
