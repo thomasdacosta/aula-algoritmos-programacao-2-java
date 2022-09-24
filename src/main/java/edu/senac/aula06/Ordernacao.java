@@ -112,6 +112,10 @@ public class Ordernacao {
 				valores[posAtual] = valorMinimoValor;
 				valores[posMinimoValor] = valorAtual;
 			}
+			
+			logOperacoes();
+			if (listener != null)
+				listener.onExecution(valores);			
 		}
 
 		Instant end = Instant.now();
