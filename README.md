@@ -5,9 +5,10 @@
 **Aula 03** – Trabalhando com Arquivos<br/>
 **Aula 04** – Vetores e Matrizes<br/>
 **Aula 05** – Recursividade<br/>
-**Aula 06** – Algoritmos de Ordenação: BubbleSort<br/>
-**Aula 07** – Algoritmos de Ordenação: InsertionSort<br/>
-**Aula 08** – Busca Linear e binária<br/>
+**Aula 06** – Algoritmos de Ordenação: Bubble Sort<br/>
+**Aula 07** – Algoritmos de Ordenação: Insertion Sort<br/>
+**Aula 08** – Algoritmos de Ordenação: Selection Sort<br/>
+**Aula 09** – Busca Linear e binária<br/>
 
 ---
 
