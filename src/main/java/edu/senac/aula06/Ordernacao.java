@@ -153,8 +153,8 @@ public class Ordernacao {
 		ordernacao.gerarValoresVetor(100000);
 		ordernacao.bubbleSort();
 
-//		ordernacao.gerarValoresVetor(1000);
-//		ordernacao.insertionSort();
+		ordernacao.gerarValoresVetor(1000);
+		ordernacao.insertionSort();
 
 		ordernacao.gerarValoresVetor(100000);
 		ordernacao.selectionSort();
