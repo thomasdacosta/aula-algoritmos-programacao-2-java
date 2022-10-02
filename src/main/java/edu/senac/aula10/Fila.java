@@ -32,18 +32,18 @@ public class Fila<E> implements Queue<E> {
 		if (size > Integer.MAX_VALUE)
 			throw new IllegalArgumentException();
 		
-		if (this.node.getObject() == null && this.node.getNode() == null) {
+		if (this.node.getObject() == null && this.node.getNextNode() == null) {
 			this.node.setObject(e);
 			size++;
 		} else {
 			Node<E> node = this.node;
-			while (node.getNode() != null) {
-				node = node.getNode();
+			while (node.getNextNode() != null) {
+				node = node.getNextNode();
 			}
 			
 			Node<E> newNode = new Node<>();
 			newNode.setObject(e);
-			node.setNode(newNode);
+			node.setNextNode(newNode);
 			size++;
 		}
 		
@@ -78,7 +78,7 @@ public class Fila<E> implements Queue<E> {
 	
 	private E removeElement() {
 		E value = this.node.getObject();
-		this.node = this.node.getNode();
+		this.node = this.node.getNextNode();
 		
 		if (this.node == null)
 			this.node = new Node<>();
@@ -92,7 +92,7 @@ public class Fila<E> implements Queue<E> {
 		if (this.node.getObject() == null)
 			throw new NoSuchElementException();
 		
-		return this.node.getNode().getObject();
+		return this.node.getNextNode().getObject();
 	}
 	
 	@Override
@@ -166,9 +166,9 @@ public class Fila<E> implements Queue<E> {
 		String elements = "";
 		Node<E> node = this.node;
 		elements = "[";
-		while (node.getNode() != null) {
+		while (node.getNextNode() != null) {
 			elements += (node.getObject() == null ? "" : node.getObject()) + ",";
-			node = node.getNode();
+			node = node.getNextNode();
 		}
 		elements += (node.getObject() == null ? "" : node.getObject()) + "]";
 		return elements;

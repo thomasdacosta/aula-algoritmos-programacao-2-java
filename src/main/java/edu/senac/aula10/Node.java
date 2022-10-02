@@ -2,15 +2,24 @@ package edu.senac.aula10;
 
 public class Node<E> {
 
-	private Node<E> node;
+	private Node<E> nextNode;
+	private Node<E> prevNode;
 	private E object; 
 
-	public Node<E> getNode() {
-		return node;
+	public Node<E> getNextNode() {
+		return nextNode;
 	}
 
-	public void setNode(Node<E> node) {
-		this.node = node;
+	public void setNextNode(Node<E> node) {
+		this.nextNode = node;
+	}
+
+	public Node<E> getPrevNode() {
+		return prevNode;
+	}
+
+	public void setPrevNode(Node<E> prevNode) {
+		this.prevNode = prevNode;
 	}
 
 	public E getObject() {
