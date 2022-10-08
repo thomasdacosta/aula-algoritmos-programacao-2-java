@@ -34,7 +34,7 @@ public class OrdenacaoFrame extends JFrame {
 
 	private JLabel lblStatus;
 	
-	private Ordernacao ordernacao = new Ordernacao();
+	private Ordenacao ordernacao = new Ordenacao();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

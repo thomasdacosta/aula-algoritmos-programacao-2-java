@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.UUID;
 
-public class Ordernacao {
+public class Ordenacao {
 
 	private boolean logOperacoes = false;
 
@@ -21,7 +21,7 @@ public class Ordernacao {
 
 	private OrdenacaoListener listener = null;
 
-	public Ordernacao() {
+	public Ordenacao() {
 	}
 
 	public void gerarValoresVetor(int tamanhoVetor) {
@@ -66,7 +66,7 @@ public class Ordernacao {
 
 		Instant end = Instant.now();
 		tempoOrdenacao = Duration.between(start, end);
-		System.out.println("##### DuraÃ§Ã£o da ordenaÃ§Ã£o - BubbleSort: " + tempoOrdenacao);
+		System.out.println("##### Duração da ordenação - BubbleSort: " + tempoOrdenacao);
 	}
 
 	public void insertionSort() {
@@ -85,7 +85,7 @@ public class Ordernacao {
 		}
 		Instant end = Instant.now();
 		tempoOrdenacao = Duration.between(start, end);
-		System.out.println("##### DuraÃ§Ã£o da ordenaÃ§Ã£o - InsertionSort: " + tempoOrdenacao);
+		System.out.println("##### Duração da ordenação - InsertionSort: " + tempoOrdenacao);
 	}
 
 	public void selectionSort() {
@@ -120,7 +120,7 @@ public class Ordernacao {
 
 		Instant end = Instant.now();
 		tempoOrdenacao = Duration.between(start, end);
-		System.out.println("##### DuraÃ§Ã£o da ordenaÃ§Ã£o - SelectionSort: " + tempoOrdenacao);
+		System.out.println("##### Duração da ordenação - SelectionSort: " + tempoOrdenacao);
 	}
 
 	public void gerarArquivo(String prefix) throws IOException {
@@ -152,16 +152,16 @@ public class Ordernacao {
 	public static void main(String[] args) throws IOException {
 		Scanner scanner = new Scanner(System.in);
 
-		Ordernacao ordernacao = new Ordernacao();
+		Ordenacao objOrdenacao = new Ordenacao();
 
-		ordernacao.gerarValoresVetor(100000);
-		ordernacao.bubbleSort();
+		objOrdenacao.gerarValoresVetor(1000);
+		objOrdenacao.bubbleSort();
 
-		ordernacao.gerarValoresVetor(1000);
-		ordernacao.insertionSort();
+		objOrdenacao.gerarValoresVetor(1000);
+		objOrdenacao.insertionSort();
 
-		ordernacao.gerarValoresVetor(100000);
-		ordernacao.selectionSort();
+		objOrdenacao.gerarValoresVetor(1000);
+		objOrdenacao.selectionSort();
 
 		scanner.close();
 	}

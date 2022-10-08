@@ -11,14 +11,14 @@ import java.time.Instant;
 import java.util.Scanner;
 import java.util.UUID;
 
-import edu.senac.aula06.Ordernacao;
+import edu.senac.aula06.Ordenacao;
 
 public class BuscaLinear {
 
 	public static void main(String[] args) throws IOException {
 		Duration tempoOrdenacao = null;
 
-		Ordernacao ordernacao = new Ordernacao();
+		Ordenacao ordernacao = new Ordenacao();
 		System.out.println("##### Gerando valores...");
 		
 		ordernacao.gerarValoresVetor(200000);
