@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -16,7 +19,7 @@ import javax.swing.border.LineBorder;
 
 public class OrdenacaoFrame extends JFrame {
 	
-	private static final Integer TAMANHO_VETOR = 10;
+	private static final Integer TAMANHO_VETOR = 20;
 
 	private static final long serialVersionUID = -3234138620479184569L;
 
@@ -55,8 +58,9 @@ public class OrdenacaoFrame extends JFrame {
 		criarBotaoOrdenar();
 		criarBotaoGerarValores();
 
-		ordernacao.gerarValoresVetor(TAMANHO_VETOR);
-		mostrarOrdenacao(ordernacao.getValores());
+		Integer[] valores = gerarVetor();
+		ordernacao.setValores(valores);
+		mostrarOrdenacao(valores);
 	}
 	
 	private void removerComponentes() {
@@ -77,14 +81,14 @@ public class OrdenacaoFrame extends JFrame {
 			JPanel panel = new JPanel();
 			panel.setBackground(Color.BLUE);
 			panel.setBounds(posicaoInicial, 
-					127 - (valores[i] * 10), 
+					227 - (valores[i] * 10), 
 					26, 
 					(56 + (valores[i] * 10)));
 			contentPane.add(panel);
 			jPanels[i] = panel;
 			
 			JLabel label = new JLabel(valores[i] + "");
-			label.setBounds(posicaoInicial, 190, 26, 14);
+			label.setBounds(posicaoInicial, 290, 26, 14);
 			contentPane.add(label);
 			jLabels[i] = label;
 			
@@ -95,7 +99,7 @@ public class OrdenacaoFrame extends JFrame {
 	private void criarComponentePrincipal() {
 		setTitle("Algortimos de Ordena\u00E7\u00E3o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 583, 312);
+		setBounds(100, 100, 990, 412);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -162,8 +166,17 @@ public class OrdenacaoFrame extends JFrame {
 			}
 		});
 
-		btnOrdenar.setBounds(463, 239, 89, 23);
+		btnOrdenar.setBounds(863, 339, 89, 23);
 		contentPane.add(btnOrdenar);
+	}
+	
+	private Integer[] gerarVetor() {
+		List<Integer> integers = new ArrayList<>();
+		for (int i=0;i<TAMANHO_VETOR;i++)
+			integers.add(i+1);
+		
+		Collections.shuffle(integers);
+		return integers.toArray(new Integer[integers.size()]);
 	}
 	
 	private void criarBotaoGerarValores() {
@@ -172,7 +185,8 @@ public class OrdenacaoFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblStatus.setText("");
 				removerComponentes();
-				ordernacao.gerarValoresVetor(TAMANHO_VETOR);
+				
+				ordernacao.setValores(gerarVetor());
 				mostrarOrdenacao(ordernacao.getValores());
 
 				contentPane.revalidate();
@@ -180,14 +194,14 @@ public class OrdenacaoFrame extends JFrame {
 			}
 		});
 
-		btnGerarValores.setBounds(333, 239, 122, 23);
+		btnGerarValores.setBounds(733, 339, 122, 23);
 		contentPane.add(btnGerarValores);
 	}
 	
 	private void criarComponentes() {
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBounds(430, 11, 122, 192);
+		panel.setBounds(800, 71, 142, 192);
 		panel.setLayout(null);
 		contentPane.add(panel);
 
@@ -210,7 +224,7 @@ public class OrdenacaoFrame extends JFrame {
 		buttonGroup.add(rdbtnInsertionSort);
 		
 		lblStatus = new JLabel("");
-		lblStatus.setBounds(10, 243, 313, 14);
+		lblStatus.setBounds(10, 350, 313, 14);
 		contentPane.add(lblStatus);
 	}
 	

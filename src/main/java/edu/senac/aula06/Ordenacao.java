@@ -137,6 +137,10 @@ public class Ordenacao {
 		return valores;
 	}
 
+	public void setValores(Integer[] valores) {
+		this.valores = valores;
+	}
+
 	public void setListener(OrdenacaoListener listener) {
 		this.listener = listener;
 	}
