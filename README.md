@@ -1,4 +1,4 @@
-# Senac - Algoritmos e Programação II
+# Algoritmos e Programação II
 
 **Aula 01** – Apresentação<br/>
 **Aula 02** – Programação Orientada a Objetos<br/>
